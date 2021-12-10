@@ -1,0 +1,26 @@
+@import "./shared/navigation";
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Sansation", sans-serif;
+  color: black;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+::-webkit-input-placeholder {
+  color: black;
+  font-weight: 500;
+}
