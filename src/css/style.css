@@ -1,4 +1,5 @@
 .main-navigation {
+  z-index: 100;
   position: -webkit-sticky;
   position: sticky;
   left: 0;
@@ -48,6 +49,87 @@
   color: rgba(104, 99, 99, 0.9);
 }
 
+.main-header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 7fr 3fr;
+      grid-template-rows: 7fr 3fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
+
+.main-header__hero-msg {
+  grid-column: span 2;
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
+  font-size: 1.8rem;
+  position: relative;
+}
+
+.main-header__hero-msg::after {
+  display: inline-block;
+  content: " ";
+  position: absolute;
+  height: 1px;
+  width: 14rem;
+  background-color: black;
+  left: 50%;
+  top: 4.5rem;
+  border-radius: 2px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.main-header__wp-logo {
+  position: relative;
+  width: 40rem;
+  height: 30rem;
+}
+
+.main-header__wp-logo .main-header__wp-logo-small-letters {
+  font-size: 10rem;
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+}
+
+.main-header__wp-logo .main-header__wp-logo-big-letters {
+  font-size: 23rem;
+  position: absolute;
+  color: rgba(0, 0, 0, 0.1);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  left: 6rem;
+}
+
+.main-header__chart-logo-container {
+  position: relative;
+  width: 40rem;
+  height: 40rem;
+}
+
+.main-header__chart-logo-container .main-header__chart-pie-logo-small {
+  position: absolute;
+  height: 15rem;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 52%;
+  right: 0;
+}
+
+.main-header__chart-logo-container .main-header__chart-pie-logo-big {
+  opacity: 0.1;
+  position: absolute;
+  height: 34rem;
+  -webkit-transform: rotateZ(171deg) translateY(-50%);
+          transform: rotateZ(171deg) translateY(-50%);
+  top: -36%;
+  left: -3rem;
+}
+
 *,
 *::before,
 *::after {
@@ -73,5 +155,14 @@ body {
 ::-webkit-input-placeholder {
   color: black;
   font-weight: 500;
+}
+
+.global-wrapper {
+  min-height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: max-content 1fr;
+      grid-template-rows: -webkit-max-content 1fr;
+      grid-template-rows: max-content 1fr;
 }
 /*# sourceMappingURL=style.css.map */

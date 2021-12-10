@@ -1,0 +1,22 @@
+.main-header__chart-logo-container {
+  position: relative;
+  width: 40rem;
+  height: 40rem;
+
+  .main-header__chart-pie-logo-small {
+    position: absolute;
+    height: 15rem;
+    transform: translateY(-50%);
+    top: 52%;
+    right: 0;
+  }
+
+  .main-header__chart-pie-logo-big {
+    opacity: 0.1;
+    position: absolute;
+    height: 34rem;
+    transform: rotateZ(171deg) translateY(-50%);
+    top: -36%;
+    left: -3rem;
+  }
+}

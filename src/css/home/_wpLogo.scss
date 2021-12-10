@@ -1,0 +1,19 @@
+.main-header__wp-logo {
+  position: relative;
+  width: 40rem;
+  height: 30rem;
+  .main-header__wp-logo-small-letters {
+    font-size: 10rem;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+  }
+  .main-header__wp-logo-big-letters {
+    font-size: 23rem;
+    position: absolute;
+    color: rgba(0, 0, 0, 0.1);
+    transform: translateY(-50%);
+    top: 50%;
+    left: 6rem;
+  }
+}

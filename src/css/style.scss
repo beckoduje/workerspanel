@@ -1,4 +1,7 @@
 @import "./shared/navigation";
+@import "./home/header";
+@import "./home/wpLogo";
+@import "./home/chartPieLogo";
 
 *,
 *::before,
@@ -23,4 +26,10 @@ body {
 ::-webkit-input-placeholder {
   color: black;
   font-weight: 500;
+}
+
+.global-wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: max-content 1fr;
 }
