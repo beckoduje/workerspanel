@@ -8,7 +8,7 @@ export default function Home() {
       <WPLogo />
       <ChartPieLogo />
       <h2 className="main-header__hero-msg">
-        THE ONLY WORKER PANEL YOU'LL EVER NEED
+        THE ONLY WORKERS PANEL YOU'LL EVER NEED
       </h2>
     </header>
   );

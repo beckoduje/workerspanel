@@ -5,6 +5,7 @@ import "./css/style.css";
 import Navigation from "./components/shared/Navigation";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </div>
   );
