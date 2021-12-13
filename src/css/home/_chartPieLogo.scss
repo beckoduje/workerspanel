@@ -5,18 +5,19 @@
 
   .main-header__chart-pie-logo-small {
     position: absolute;
-    height: 15rem;
+    height: 11rem;
     transform: translateY(-50%);
     top: 52%;
     right: 0;
+    opacity: 0.8;
   }
 
   .main-header__chart-pie-logo-big {
     opacity: 0.1;
     position: absolute;
-    height: 34rem;
+    height: 26rem;
     transform: rotateZ(171deg) translateY(-50%);
-    top: -36%;
-    left: -3rem;
+    top: -13%;
+    left: 6rem;
   }
 }

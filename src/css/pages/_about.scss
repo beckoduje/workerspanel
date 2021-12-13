@@ -1,0 +1,10 @@
+.about-section {
+  padding: 6rem;
+  &__title {
+    font-size: 2rem;
+  }
+  &__text {
+    margin-top: 3rem;
+    text-align: justify;
+  }
+}

@@ -1,8 +1,8 @@
 import React from "react";
-import ChartPieLogo from "./ChartPieLogo";
-import WPLogo from "./WPLogo";
+import ChartPieLogo from "../components/home/ChartPieLogo";
+import WPLogo from "../components/home/WPLogo";
 
-export default function Header() {
+export default function Home() {
   return (
     <header className="main-header">
       <WPLogo />

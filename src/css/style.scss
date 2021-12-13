@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap");
+
 @import "./shared/navigation";
-@import "./home/header";
+@import "./pages/home";
+@import "./pages/about";
 @import "./home/wpLogo";
 @import "./home/chartPieLogo";
 
@@ -17,10 +20,10 @@ html {
 }
 
 body {
-  font-family: "Sansation", sans-serif;
-  color: black;
+  font-family: "Open Sans", sans-serif;
+  color: #353535;
   font-size: 1.6rem;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 ::-webkit-input-placeholder {
