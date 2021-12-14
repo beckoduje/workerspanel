@@ -1,0 +1,15 @@
+.log-in-form {
+  @extend .sign-up-form;
+  &__title {
+    @extend .sign-up-form__title;
+  }
+  &__input-group {
+    @extend .sign-up-form__input-group;
+  }
+  &__warning-msg {
+    @extend .sign-up-form__warning-msg;
+  }
+  &__submit-button {
+    @extend .sign-up-form__submit-button;
+  }
+}

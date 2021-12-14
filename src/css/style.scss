@@ -4,9 +4,11 @@
 @import "./pages/home";
 @import "./pages/about";
 @import "./pages/signUp";
+@import "./pages/logIn";
 @import "./home/wpLogo";
 @import "./home/chartPieLogo";
-@import "./sign-up/form";
+@import "./sign-up/signUpform";
+@import "./log-in/logInform";
 
 *,
 *::before,
