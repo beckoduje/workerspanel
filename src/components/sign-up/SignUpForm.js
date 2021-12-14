@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 const registeredUsers = [
   {
@@ -24,13 +24,64 @@ const registeredUsers = [
 console.log(registeredUsers);
 
 export default function SignUpForm() {
-  const emailInput = useRef();
+  const [userInputs, setUserInputs] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmedPassword: "",
+  });
+
+  // const signUpUser = (emailInput) => {
+  //   const isRegistered = registeredUsers.some(
+  //     (user) => user.mail === emailInput
+  //   );
+  //   console.log("Radi funkcija");
+  //   console.log(isRegistered);
+  //   console.log(emailInput);
+  // };
+
+  /*
+  const onClick = () => {
+// Do this:
+setPerson(prevPerson => {
+return {
+...prevPerson,
+age: prevPerson.age + 1
+}
+})
+  */
+
+  console.log(userInputs);
+
+  function setUserInputsHandler(e, key) {
+    setUserInputs((prevUserInputs) => {
+      return {
+        ...prevUserInputs,
+        key: e.target.value,
+      };
+    });
+  }
+
   return (
     <form className="sign-up-form" action="#" method="#">
       <h1 className="sign-up-form__title">Sign Up</h1>
       <div className="sign-up-form__input-group">
         <label htmlFor="name">Name:</label>
-        <input id="name" type="text" placeholder="name" />
+        <input
+          id="name"
+          type="text"
+          placeholder="name"
+          // onChange={(e) =>
+          //   setUserInputs((prevUserInputs) => {
+          //     return {
+          //       ...prevUserInputs,
+          //       name: e.target.value,
+          //     };
+          //   })
+          // }
+          onChange={(e) => setUserInputsHandler(e, "name")}
+        />
         <div className="sign-up-form__warning-msg">
           <i className="fas fa-exclamation-circle"></i>
           <span>Enter first name</span>
@@ -45,9 +96,7 @@ export default function SignUpForm() {
         </div>
       </div>
       <div className="sign-up-form__input-group">
-        <label htmlFor="email" ref={emailInput}>
-          Email:
-        </label>
+        <label htmlFor="email">Email:</label>
         <input id="email" type="email" placeholder="example@example.com" />
         <div className="sign-up-form__warning-msg" id="email-warr">
           <i className="fas fa-exclamation-circle"></i>
@@ -89,7 +138,11 @@ export default function SignUpForm() {
           <span>Please accept the terms to proceed</span>
         </div>
       </div>
-      <button className="sign-up-form__submit-button" type="submit">
+      <button
+        className="sign-up-form__submit-button"
+        type="text"
+        // onClick={() => signUpUser()}
+      >
         Sign Up
       </button>
     </form>
