@@ -1,4 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import { ApplicationContext } from "../../context/application-context";
 
 const registeredUsers = [
   {
@@ -22,6 +26,7 @@ const registeredUsers = [
 ];
 
 export default function SignUpForm({ setExistingUserModal }) {
+  const { setIsLogged } = useContext(ApplicationContext);
   // Object that holds all the inputs from user
   const [userInputs, setUserInputs] = useState({
     name: "",
@@ -42,6 +47,8 @@ export default function SignUpForm({ setExistingUserModal }) {
   });
 
   const checkboxRef = useRef();
+
+  const navigate = useNavigate();
 
   // function that updates states with user inputs for every input. Triggered with onCHange
   function setUserInputsHandler(e, key) {
@@ -85,7 +92,8 @@ export default function SignUpForm({ setExistingUserModal }) {
       email: userInputs.email,
       password: userInputs.password,
     });
-    console.log(registeredUsers);
+    setIsLogged(true);
+    navigate("/home", { replace: true });
   }
 
   // function for form submition

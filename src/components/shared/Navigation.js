@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
+import { ApplicationContext } from "../../context/application-context";
+
 export default function Navigation() {
+  const { isLogged, setIsLogged } = useContext(ApplicationContext);
+
   return (
     <nav className="main-navigation">
       <div className="main-navigation__logo">
@@ -24,12 +28,18 @@ export default function Navigation() {
             Sign up
           </NavLink>
         </li>
-        <li className="main-navigation__link-item">
+        <li
+          className="main-navigation__link-item"
+          onClick={() => {
+            if (!isLogged) return;
+            setIsLogged(false);
+          }}
+        >
           <NavLink
             className={(navData) => (navData.isActive ? "active" : "")}
             to="/log-in"
           >
-            Log in
+            {!isLogged ? "Log in" : "Log out"}
           </NavLink>
         </li>
       </ul>
