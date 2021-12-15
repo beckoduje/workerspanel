@@ -1,0 +1,42 @@
+.email-in-use {
+  position: fixed;
+  z-index: 150;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(53, 53, 53, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  &.active {
+    display: flex;
+  }
+
+  &__text-wrapper {
+    width: 35rem;
+    height: 15rem;
+    background: white;
+    box-shadow: 0px 2px 2px rgba(255, 255, 255, 0.45);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      background: white;
+      padding: 0.6rem;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+      color: rgb(11, 154, 250);
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+}
