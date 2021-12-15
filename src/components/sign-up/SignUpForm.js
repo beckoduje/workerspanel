@@ -77,17 +77,19 @@ export default function SignUpForm({ setExistingUserModal }) {
 
   // function for pushing user into registered useres
   function registerUserHandler(registeredUsers, userInputs, errors) {
-    console.log(errors);
-    // registeredUsers.push({
-    //   name: userInputs.name,
-    //   lastName: userInputs.lastName,
-    //   email: userInputs.email,
-    //   password: userInputs.password,
-    // });
+    const isThereError = Object.values(errors).includes(true);
+    if (isThereError || !userInputs.name) return;
+    registeredUsers.push({
+      name: userInputs.name,
+      lastName: userInputs.lastName,
+      email: userInputs.email,
+      password: userInputs.password,
+    });
+    console.log(registeredUsers);
   }
 
   // function for form submition
-  function submitFormHandler(e, registeredUsers, userInputs, errors) {
+  function submitFormHandler(e, registeredUsers, userInputs) {
     e.preventDefault();
     // check is there registered user with current email
     const isFound = isUserRegistered(registeredUsers, userInputs.email);
@@ -96,10 +98,11 @@ export default function SignUpForm({ setExistingUserModal }) {
       return;
     }
     checkUserInputs(userInputs);
-    console.log(checkboxRef.current.checked);
-    //checkboxHandler();
-    registerUserHandler(registeredUsers, userInputs, errors);
   }
+
+  useEffect(() => {
+    registerUserHandler(registeredUsers, userInputs, errors);
+  }, [errors]);
 
   // name group
   const nameInputClass = errors.name ? "error" : "";
@@ -131,24 +134,6 @@ export default function SignUpForm({ setExistingUserModal }) {
   const checkboxClass = errors.checkbox
     ? "sign-up-form__warning-msg active"
     : "sign-up-form__warning-msg";
-
-  //////////////////////////// provjeriti s Danijelom zašto ovo ne radi
-  // let checkboxClass = "sign-up-form__warning-msg";
-  // function checkboxHandler() {
-  //   checkboxClass = !checkboxRef.current.checked
-  //     ? "sign-up-form__warning-msg active"
-  //     : "sign-up-form__warning-msg";
-  //   console.log(checkboxClass);
-  // }
-
-  // useEffect(() => {
-  //   checkboxHandler();
-  // }, [errors]);
-
-  // useEffect(() => {
-  //   const jel = Object.values(errors).includes(true);
-  //   console.log(jel);
-  // }, [userInputs]);
 
   return (
     <form className="sign-up-form" action="#" method="#">
