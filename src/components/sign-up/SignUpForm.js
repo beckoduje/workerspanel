@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const registeredUsers = [
   {
@@ -21,8 +21,6 @@ const registeredUsers = [
   },
 ];
 
-console.log(registeredUsers);
-
 export default function SignUpForm({ setExistingUserModal }) {
   // Object that holds all the inputs from user
   const [userInputs, setUserInputs] = useState({
@@ -33,7 +31,17 @@ export default function SignUpForm({ setExistingUserModal }) {
     confirmedPassword: "",
   });
 
-  console.log(userInputs);
+  // states for errors
+  const [errors, setErrors] = useState({
+    name: false,
+    lastName: false,
+    email: false,
+    password: false,
+    confirmedPassword: false,
+    checkbox: false,
+  });
+
+  const checkboxRef = useRef();
 
   // function that updates states with user inputs for every input. Triggered with onCHange
   function setUserInputsHandler(e, key) {
@@ -50,16 +58,97 @@ export default function SignUpForm({ setExistingUserModal }) {
     return registeredUsers.some((user) => user.email === typedEmail);
   }
 
+  // function that checks individual inputs and updates errors
+  function checkUserInputs(userInputs) {
+    setErrors({
+      name: !userInputs.name ? true : false,
+      lastName: !userInputs.lastName ? true : false,
+      email:
+        !userInputs.email || !userInputs.email.includes("@") ? true : false,
+      password: !userInputs.password ? true : false,
+      confirmedPassword:
+        !userInputs.confirmedPassword ||
+        userInputs.confirmedPassword !== userInputs.password
+          ? true
+          : false,
+      checkbox: !checkboxRef.current.checked ? true : false,
+    });
+  }
+
+  // function for pushing user into registered useres
+  function registerUserHandler(registeredUsers, userInputs, errors) {
+    console.log(errors);
+    // registeredUsers.push({
+    //   name: userInputs.name,
+    //   lastName: userInputs.lastName,
+    //   email: userInputs.email,
+    //   password: userInputs.password,
+    // });
+  }
+
   // function for form submition
-  function submitFormHandler(e, registeredUsers, email) {
+  function submitFormHandler(e, registeredUsers, userInputs, errors) {
     e.preventDefault();
     // check is there registered user with current email
-    const isFound = isUserRegistered(registeredUsers, email);
+    const isFound = isUserRegistered(registeredUsers, userInputs.email);
     if (isFound) {
       setExistingUserModal(true);
       return;
     }
+    checkUserInputs(userInputs);
+    console.log(checkboxRef.current.checked);
+    //checkboxHandler();
+    registerUserHandler(registeredUsers, userInputs, errors);
   }
+
+  // name group
+  const nameInputClass = errors.name ? "error" : "";
+  const nameErrorMsgClass = errors.name
+    ? "sign-up-form__warning-msg active"
+    : "sign-up-form__warning-msg";
+  // last name group
+  const lastNameInputClass = errors.lastName ? "error" : "";
+  const lastNameErrorMsgClass = errors.lastName
+    ? "sign-up-form__warning-msg active"
+    : "sign-up-form__warning-msg";
+  // email group
+  const emailInputClass = errors.email ? "error" : "";
+  const emailErrorMsgClass = errors.email
+    ? "sign-up-form__warning-msg active"
+    : "sign-up-form__warning-msg";
+  // password group
+  const passwordInputClass = errors.password ? "error" : "";
+  const passwordErrorMsgClass = errors.password
+    ? "sign-up-form__warning-msg active"
+    : "sign-up-form__warning-msg";
+  // confirmed password group
+  const confirmedPasswordInputClass = errors.confirmedPassword ? "error" : "";
+  const confirmedPasswordErrorMsgClass = errors.confirmedPassword
+    ? "sign-up-form__warning-msg active"
+    : "sign-up-form__warning-msg";
+
+  // checkbox class
+  const checkboxClass = errors.checkbox
+    ? "sign-up-form__warning-msg active"
+    : "sign-up-form__warning-msg";
+
+  //////////////////////////// provjeriti s Danijelom zašto ovo ne radi
+  // let checkboxClass = "sign-up-form__warning-msg";
+  // function checkboxHandler() {
+  //   checkboxClass = !checkboxRef.current.checked
+  //     ? "sign-up-form__warning-msg active"
+  //     : "sign-up-form__warning-msg";
+  //   console.log(checkboxClass);
+  // }
+
+  // useEffect(() => {
+  //   checkboxHandler();
+  // }, [errors]);
+
+  // useEffect(() => {
+  //   const jel = Object.values(errors).includes(true);
+  //   console.log(jel);
+  // }, [userInputs]);
 
   return (
     <form className="sign-up-form" action="#" method="#">
@@ -71,8 +160,9 @@ export default function SignUpForm({ setExistingUserModal }) {
           type="text"
           placeholder="name"
           onChange={(e) => setUserInputsHandler(e, "name")}
+          className={nameInputClass}
         />
-        <div className="sign-up-form__warning-msg">
+        <div className={nameErrorMsgClass}>
           <i className="fas fa-exclamation-circle"></i>
           <span>Enter first name</span>
         </div>
@@ -84,8 +174,9 @@ export default function SignUpForm({ setExistingUserModal }) {
           type="text"
           placeholder="last name"
           onChange={(e) => setUserInputsHandler(e, "lastName")}
+          className={lastNameInputClass}
         />
-        <div className="sign-up-form__warning-msg">
+        <div className={lastNameErrorMsgClass}>
           <i className="fas fa-exclamation-circle"></i>
           <span>Enter last name</span>
         </div>
@@ -97,8 +188,9 @@ export default function SignUpForm({ setExistingUserModal }) {
           type="email"
           placeholder="example@example.com"
           onChange={(e) => setUserInputsHandler(e, "email")}
+          className={emailInputClass}
         />
-        <div className="sign-up-form__warning-msg" id="email-warr">
+        <div className={emailErrorMsgClass} id="email-warr">
           <i className="fas fa-exclamation-circle"></i>
           <span>Enter proper email address</span>
         </div>
@@ -110,8 +202,9 @@ export default function SignUpForm({ setExistingUserModal }) {
           type="password"
           placeholder="***"
           onChange={(e) => setUserInputsHandler(e, "password")}
+          className={passwordInputClass}
         />
-        <div className="sign-up-form__warning-msg">
+        <div className={passwordErrorMsgClass}>
           <i className="fas fa-exclamation-circle"></i>
           <span>Enter a password</span>
         </div>
@@ -123,15 +216,16 @@ export default function SignUpForm({ setExistingUserModal }) {
           type="password"
           placeholder="***"
           onChange={(e) => setUserInputsHandler(e, "confirmedPassword")}
+          className={confirmedPasswordInputClass}
         />
-        <div className="sign-up-form__warning-msg" id="pass-confirmation">
+        <div className={confirmedPasswordErrorMsgClass} id="pass-confirmation">
           <i className="fas fa-exclamation-circle"></i>
           <span className="sign-up-form__mismatch-msg">Confirm password</span>
         </div>
       </div>
       <div className="sign-up-form__input-group sign-up-form__input-group--checkbox">
         <div className="sign-up-form__terms-wrapper">
-          <input type="checkbox" id="checkbox" />
+          <input type="checkbox" id="checkbox" ref={checkboxRef} />
           <label>
             I accept the{" "}
             <a href="#" className="sign-up-form__term-priv-links">
@@ -143,7 +237,7 @@ export default function SignUpForm({ setExistingUserModal }) {
             </a>
           </label>
         </div>
-        <div className="sign-up-form__warning-msg sign-up-form__warrning-msg--checkbox-msg">
+        <div className={checkboxClass}>
           <i className="fas fa-exclamation-circle"></i>
           <span>Please accept the terms to proceed</span>
         </div>
@@ -151,7 +245,9 @@ export default function SignUpForm({ setExistingUserModal }) {
       <button
         className="sign-up-form__submit-button"
         type="text"
-        onClick={(e) => submitFormHandler(e, registeredUsers, userInputs.email)}
+        onClick={(e) =>
+          submitFormHandler(e, registeredUsers, userInputs, errors)
+        }
       >
         Sign Up
       </button>

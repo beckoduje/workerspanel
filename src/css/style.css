@@ -253,6 +253,10 @@
   margin-right: 0.6rem;
 }
 
+.sign-up-form__warning-msg i::before, .log-in-form__warning-msg i::before {
+  font-family: "Font Awesome 5 Free";
+}
+
 .sign-up-form__terms-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
