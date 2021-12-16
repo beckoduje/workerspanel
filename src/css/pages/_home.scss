@@ -4,6 +4,10 @@
   grid-template-columns: 1fr 1fr;
   place-items: center;
 
+  &.inactive {
+    display: none;
+  }
+
   &__hero-msg {
     grid-column: span 2;
     align-self: baseline;
@@ -17,7 +21,7 @@
       position: absolute;
       height: 1px;
       width: 14rem;
-      background-color: black;
+      background-color: $primaryFontColor;
       left: 50%;
       top: 4.5rem;
       border-radius: 2px;

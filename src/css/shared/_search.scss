@@ -1,0 +1,15 @@
+.worker-search-form {
+  //   width: 30rem;
+  display: flex;
+  justify-content: flex-end;
+  background: red;
+
+  &__input {
+    width: 15rem;
+    transition: all 0.2s;
+
+    &:focus {
+      width: 30rem;
+    }
+  }
+}

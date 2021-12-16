@@ -44,9 +44,18 @@
   display: -ms-flexbox;
   display: flex;
   list-style: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main-navigation__link-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-left: 2.3rem;
   font-weight: 600;
   cursor: pointer;
@@ -58,6 +67,10 @@
   color: rgba(104, 99, 99, 0.9);
 }
 
+.main-navigation__link-item.inactive {
+  display: none;
+}
+
 .main-navigation__link-item a {
   text-decoration: none;
   color: inherit;
@@ -65,6 +78,30 @@
 
 .main-navigation__link-item a.active {
   color: #0b9afa;
+}
+
+.main-navigation__link-item i {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 2rem;
+}
+
+.main-navigation__link-item i::before {
+  font-family: "Font Awesome 5 Free";
+}
+
+.main-navigation__link-item i:hover {
+  -webkit-transform: rotateZ(180deg);
+          transform: rotateZ(180deg);
+}
+
+.main-navigation__profile-icon-button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #353535;
+  outline: none;
+  border: none;
 }
 
 .main-header {
@@ -75,6 +112,10 @@
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
   place-items: center;
+}
+
+.main-header.inactive {
+  display: none;
 }
 
 .main-header__hero-msg {
@@ -92,7 +133,7 @@
   position: absolute;
   height: 1px;
   width: 14rem;
-  background-color: black;
+  background-color: #353535;
   left: 50%;
   top: 4.5rem;
   border-radius: 2px;
@@ -358,6 +399,26 @@
   cursor: pointer;
 }
 
+.worker-search-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  background: red;
+}
+
+.worker-search-form__input {
+  width: 15rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.worker-search-form__input:focus {
+  width: 30rem;
+}
+
 *,
 *::before,
 *::after {
@@ -382,7 +443,7 @@ body {
 }
 
 ::-webkit-input-placeholder {
-  color: black;
+  color: #353535;
   font-weight: 500;
 }
 
