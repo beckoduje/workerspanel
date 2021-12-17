@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ApplicationContext } from "../../context/application-context";
 
-const registeredUsers = [
+export const registeredUsers = [
   {
     name: "Duje",
     lastName: "Becko",

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ApplicationContext } from "../context/application-context";
 import ChartPieLogo from "../components/home/ChartPieLogo";
 import WPLogo from "../components/home/WPLogo";
@@ -8,6 +8,13 @@ import SidePanel from "../components/shared/SidePanel";
 export default function Home() {
   const { isLogged } = useContext(ApplicationContext);
   const headerClass = !isLogged ? "main-header" : "main-header inactive";
+  const sidePanelActivatorClass = isLogged
+    ? "side-panel-activator"
+    : "side-panel-activator inactive";
+
+  useEffect(() => {
+    console.log(isLogged);
+  }, []);
   return (
     <Fragment>
       <header className={headerClass}>
@@ -17,7 +24,9 @@ export default function Home() {
           THE ONLY WORKERS PANEL YOU'LL EVER NEED
         </h2>
       </header>
-      <SidePanel />
+      <div className={sidePanelActivatorClass}>
+        <SidePanel />
+      </div>
     </Fragment>
   );
 }

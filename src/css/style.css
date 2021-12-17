@@ -462,8 +462,17 @@
   color: rgba(53, 53, 53, 0.55);
 }
 
+.side-panel-activator {
+  z-index: 100;
+}
+
+.side-panel-activator.inactive {
+  display: none;
+}
+
 .side-panel {
   z-index: 100;
+  height: 100%;
   background: white;
   width: 35rem;
   -webkit-box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.25);
