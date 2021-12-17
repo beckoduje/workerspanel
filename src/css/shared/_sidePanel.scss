@@ -1,0 +1,35 @@
+.side-panel {
+  z-index: 100;
+  background: white;
+  width: 35rem;
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.25);
+  border-top: 1px solid #dfe1e5;
+  transition: 0.2s;
+
+  &.closed {
+    width: 3rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+
+    button {
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      .fas.fa-arrow-circle-left {
+        transition: 0.2s;
+        &.closed {
+          transform: rotateZ(180deg);
+        }
+        &::before {
+          font-family: "Font Awesome 5 Free";
+        }
+      }
+    }
+  }
+}

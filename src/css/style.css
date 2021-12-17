@@ -406,17 +406,106 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  background: red;
+  width: 30rem;
+  position: relative;
 }
 
 .worker-search-form__input {
-  width: 15rem;
+  width: 60%;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  border-radius: 12px;
+  border: 1px solid #dfe1e5;
+  outline: none;
+  padding: 0.7rem;
+  -webkit-box-shadow: 0px 1px 2px rgba(32, 33, 36, 0.28);
+          box-shadow: 0px 1px 2px rgba(32, 33, 36, 0.28);
+}
+
+.worker-search-form__input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: rgba(53, 53, 53, 0.5);
+}
+
+.worker-search-form__input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgba(53, 53, 53, 0.5);
+}
+
+.worker-search-form__input:-ms-input-placeholder {
+  /* IE 10+ */
+  color: rgba(53, 53, 53, 0.5);
+}
+
+.worker-search-form__input:-moz-placeholder {
+  /* Firefox 18- */
+  color: rgba(53, 53, 53, 0.5);
 }
 
 .worker-search-form__input:focus {
-  width: 30rem;
+  width: 100%;
+}
+
+.worker-search-form__button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+.worker-search-form__button i::before {
+  font-size: 1.8rem;
+  color: rgba(53, 53, 53, 0.55);
+}
+
+.side-panel {
+  z-index: 100;
+  background: white;
+  width: 35rem;
+  -webkit-box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.25);
+          box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.25);
+  border-top: 1px solid #dfe1e5;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.side-panel.closed {
+  width: 3rem;
+}
+
+.side-panel__actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 1rem;
+}
+
+.side-panel__actions button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.side-panel__actions button .fas.fa-arrow-circle-left {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.side-panel__actions button .fas.fa-arrow-circle-left.closed {
+  -webkit-transform: rotateZ(180deg);
+          transform: rotateZ(180deg);
+}
+
+.side-panel__actions button .fas.fa-arrow-circle-left::before {
+  font-family: "Font Awesome 5 Free";
 }
 
 *,
