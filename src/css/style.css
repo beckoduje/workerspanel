@@ -471,6 +471,11 @@
 }
 
 .side-panel {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: max-content 1fr;
+      grid-template-rows: -webkit-max-content 1fr;
+      grid-template-rows: max-content 1fr;
   z-index: 100;
   height: 100%;
   background: white;
@@ -494,6 +499,7 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding: 1rem;
+  border-bottom: 1px solid #dfe1e5;
 }
 
 .side-panel__actions button {
@@ -515,6 +521,81 @@
 
 .side-panel__actions button .fas.fa-arrow-circle-left::before {
   font-family: "Font Awesome 5 Free";
+}
+
+.side-panel__actions .worker-search-form {
+  width: unset;
+  margin-right: 1.15rem;
+  margin-left: 1.15rem;
+}
+
+.side-panel__actions .worker-search-form__input {
+  width: 18rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.side-panel__actions .worker-search-form__input:focus {
+  width: 24rem;
+}
+
+.side-panel__actions .worker-search-form i::before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.5rem;
+}
+
+.side-panel__workers {
+  padding: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.side-panel__workers-list {
+  list-style: none;
+}
+
+.side-panel__workers-list li a {
+  display: block;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: #353535;
+  padding: 0.5rem;
+  -webkit-box-shadow: 0px 1px 2px rgba(32, 33, 36, 0.28);
+          box-shadow: 0px 1px 2px rgba(32, 33, 36, 0.28);
+}
+
+.filter, .filter__options-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: auto;
+}
+
+.filter i::before, .filter__options-container i::before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.5rem;
+}
+
+.filter__options-container {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.filter__options {
+  position: absolute;
+  top: 2rem;
+  padding: 0.2rem;
 }
 
 *,

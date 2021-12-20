@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Search from "./Search";
+import SidePanelWorkersList from "./SidePanelWorkersList";
+import Filter from "./Filter";
 
 export default function SidePanel() {
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(true);
@@ -10,7 +12,8 @@ export default function SidePanel() {
   return (
     <aside className={sidePanelClass}>
       <div className="side-panel__actions">
-        <Search />
+        {isSidePanelOpen && <Filter />}
+        {isSidePanelOpen && <Search />}
         <button
           className="side-panel__toggle-button"
           onClick={() => setIsSidePanelOpen(!isSidePanelOpen)}
@@ -18,6 +21,7 @@ export default function SidePanel() {
           <i className={toggleIconClass} />
         </button>
       </div>
+      {isSidePanelOpen && <SidePanelWorkersList />}
     </aside>
   );
 }
