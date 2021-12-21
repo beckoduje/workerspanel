@@ -1,12 +1,13 @@
 import React from "react";
 
-export default function Search() {
+export default function Search({ setSearchedWorker }) {
   return (
     <form action="#" method="post" className="worker-search-form">
       <input
         placeholder="Search for worker"
         type="text"
         className="worker-search-form__input"
+        onChange={(e) => setSearchedWorker(e.target.value)}
         // onChange={(e) => getUserInput(e.target.value.trim())}
         // onKeyPress={(e) => {
         //   if (e.key === "Enter" && e.target.value.trim() !== "") {

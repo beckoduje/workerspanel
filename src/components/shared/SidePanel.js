@@ -5,6 +5,7 @@ import Filter from "./Filter";
 
 export default function SidePanel() {
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(true);
+  const [searchedWorker, setSearchedWorker] = useState("");
   const sidePanelClass = isSidePanelOpen ? "side-panel" : "side-panel closed";
   const toggleIconClass = isSidePanelOpen
     ? "fas fa-arrow-circle-left"
@@ -13,7 +14,7 @@ export default function SidePanel() {
     <aside className={sidePanelClass}>
       <div className="side-panel__actions">
         {isSidePanelOpen && <Filter />}
-        {isSidePanelOpen && <Search />}
+        {isSidePanelOpen && <Search setSearchedWorker={setSearchedWorker} />}
         <button
           className="side-panel__toggle-button"
           onClick={() => setIsSidePanelOpen(!isSidePanelOpen)}
@@ -21,7 +22,9 @@ export default function SidePanel() {
           <i className={toggleIconClass} />
         </button>
       </div>
-      {isSidePanelOpen && <SidePanelWorkersList />}
+      {isSidePanelOpen && (
+        <SidePanelWorkersList searchedWorker={searchedWorker} />
+      )}
     </aside>
   );
 }

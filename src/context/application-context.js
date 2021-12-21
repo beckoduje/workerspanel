@@ -5,7 +5,7 @@ export const ApplicationContext = createContext();
 export const ApplicationProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [registeredUsers, setRegisteredUsers] = useState();
-  const [workers, setWorkers] = useState();
+  const [workers, setWorkers] = useState([]);
 
   // fetching registered users from firebase
   async function fetchRegisteredUsers() {
