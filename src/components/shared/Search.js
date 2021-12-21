@@ -7,7 +7,11 @@ export default function Search({ setSearchedWorker }) {
         placeholder="Search for worker"
         type="text"
         className="worker-search-form__input"
-        onChange={(e) => setSearchedWorker(e.target.value)}
+        onChange={(e) => {
+          if (setSearchedWorker !== undefined) {
+            setSearchedWorker(e.target.value);
+          }
+        }}
         // onChange={(e) => getUserInput(e.target.value.trim())}
         // onKeyPress={(e) => {
         //   if (e.key === "Enter" && e.target.value.trim() !== "") {

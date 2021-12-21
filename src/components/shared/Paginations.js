@@ -22,7 +22,6 @@ export default function Paginations() {
       activePage={activePage}
       itemsCountPerPage={10}
       totalItemsCount={workers.length < 0 ? 0 : workers.length}
-      // totalItemsCount={3}
       pageRangeDisplayed={5}
       onChange={handlePageChange}
     />
