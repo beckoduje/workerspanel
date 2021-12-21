@@ -4,67 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { ApplicationContext } from "../../context/application-context";
 
-export const registeredUsers = [
-  {
-    name: "Duje",
-    lastName: "Becko",
-    email: "dujebecko@gmail.com",
-    password: "Bozenko",
-    id: 1,
-  },
-  {
-    name: "Bozena",
-    lastName: "Becko",
-    email: "bozenabecko@gmail.com",
-    password: "Bozenko12",
-    id: 2,
-  },
-  {
-    name: "Biky",
-    lastName: "Fabi",
-    email: "biky@gmail.com",
-    password: "biky12345",
-    id: 3,
-  },
-  {
-    name: "Lupo",
-    lastName: "Becko",
-    email: "lupo@gmail.com",
-    password: "lupocito",
-    id: 4,
-  },
-  {
-    name: "Shiva",
-    lastName: "Shivic",
-    email: "shiva@gmail.com",
-    password: "shiva123",
-    id: 5,
-  },
-  {
-    name: "Beky",
-    lastName: "Roberts",
-    email: "beky@gmail.com",
-    password: "beky123",
-    id: 6,
-  },
-  {
-    name: "Ante",
-    lastName: "Beko",
-    email: "ante@gmail.com",
-    password: "ante123",
-    id: 7,
-  },
-  {
-    name: "Shadow",
-    lastName: "Beko",
-    email: "shadow@gmail.com",
-    password: "shadow123",
-    id: 8,
-  },
-];
-
 export default function SignUpForm({ setExistingUserModal }) {
-  const { setIsLogged } = useContext(ApplicationContext);
+  const { setIsLogged, registeredUsers } = useContext(ApplicationContext);
   // Object that holds all the inputs from user
   const [userInputs, setUserInputs] = useState({
     name: "",
@@ -87,6 +28,21 @@ export default function SignUpForm({ setExistingUserModal }) {
   const checkboxRef = useRef();
 
   const navigate = useNavigate();
+
+  // function to POST registered user to FIREBASE
+  async function addUserToDatabase(user) {
+    const response = await fetch(
+      "https://workers-panel-67e59-default-rtdb.europe-west1.firebasedatabase.app/users.json",
+      {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Contet-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+  }
 
   // function that updates states with user inputs for every input. Triggered with onCHange
   function setUserInputsHandler(e, key) {
@@ -124,12 +80,13 @@ export default function SignUpForm({ setExistingUserModal }) {
   function registerUserHandler(registeredUsers, userInputs, errors) {
     const isThereError = Object.values(errors).includes(true);
     if (isThereError || !userInputs.name) return;
-    registeredUsers.push({
+    const newUser = {
       name: userInputs.name,
       lastName: userInputs.lastName,
       email: userInputs.email,
       password: userInputs.password,
-    });
+    };
+    addUserToDatabase(newUser);
     setIsLogged(true);
     navigate("/home", { replace: true });
   }
@@ -148,6 +105,8 @@ export default function SignUpForm({ setExistingUserModal }) {
 
   useEffect(() => {
     registerUserHandler(registeredUsers, userInputs, errors);
+    // addUserToDatabase(registeredUsers);
+    console.log(registeredUsers);
   }, [errors]);
 
   // name group

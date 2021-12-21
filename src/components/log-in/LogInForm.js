@@ -2,10 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ApplicationContext } from "../../context/application-context";
 
-import { registeredUsers } from "../sign-up/SignUpForm";
-
 export default function LogInForm() {
-  const { setIsLogged } = useContext(ApplicationContext);
+  const { setIsLogged, registeredUsers } = useContext(ApplicationContext);
   const [userInputs, setUserInputs] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: false, password: false });
 
