@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Paginations from "./Paginations";
@@ -7,6 +7,7 @@ import { ApplicationContext } from "../../context/application-context";
 
 export default function SidePanelWorkersList({ searchedWorker }) {
   const { workers } = useContext(ApplicationContext);
+  const [sliceIndex, setSliceIndex] = useState(0);
   return (
     <div className="side-panel__workers">
       <ul className="side-panel__workers-list">
@@ -19,6 +20,7 @@ export default function SidePanelWorkersList({ searchedWorker }) {
                 return wrk;
               }
             })
+            .slice(sliceIndex * 10, sliceIndex * 10 + 10)
             .map((worker) => {
               return (
                 <li
@@ -34,7 +36,7 @@ export default function SidePanelWorkersList({ searchedWorker }) {
             })}
       </ul>
       <div className="side-panel__workers-pagination">
-        <Paginations />
+        <Paginations setSliceIndex={setSliceIndex} />
       </div>
     </div>
   );

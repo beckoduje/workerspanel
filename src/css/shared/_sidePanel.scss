@@ -1,5 +1,8 @@
 .side-panel-activator {
   z-index: 100;
+  position: fixed;
+  top: 9rem;
+  height: calc(100% - 9rem);
   &.inactive {
     display: none;
   }
@@ -68,6 +71,7 @@
 
   &__workers {
     padding: 3rem;
+    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
