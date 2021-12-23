@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-export default function Filter() {
-  const [value, setValue] = useState("name");
+export default function Filter({ sortValue, setSortValue }) {
   const [sortOrder, setSortOrder] = useState("up");
   const [showFilters, setShowFilters] = useState(false);
 
   function handleValueChange(event) {
-    setValue(event.target.value);
+    setSortValue(event.target.value);
   }
 
   function handleSortOrder() {
@@ -22,13 +21,13 @@ export default function Filter() {
         {showFilters && (
           <select
             className="filter__options"
-            value={value}
+            value={sortValue}
             onChange={handleValueChange}
           >
-            <option value="read">name</option>
-            <option value="reading">last name</option>
-            <option value="want">salary</option>
-            <option value="want">work time</option>
+            <option value="name">name</option>
+            <option value="last-name">last name</option>
+            <option value="salary">salary</option>
+            <option value="work-time">work time</option>
           </select>
         )}
       </div>
