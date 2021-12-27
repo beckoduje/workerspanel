@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ApplicationContext } from "../../context/application-context";
 
-export default function Search({ setSearchedWorker }) {
+export default function Search() {
+  const { setSearchedWorker } = useContext(ApplicationContext);
   return (
     <form action="#" method="post" className="worker-search-form">
       <input
@@ -8,9 +11,10 @@ export default function Search({ setSearchedWorker }) {
         type="text"
         className="worker-search-form__input"
         onChange={(e) => {
-          if (setSearchedWorker !== undefined) {
-            setSearchedWorker(e.target.value);
-          }
+          // if (setSearchedWorker !== undefined) {
+          //   setSearchedWorker(e.target.value);
+          // }
+          setSearchedWorker(e.target.value);
         }}
         // onChange={(e) => getUserInput(e.target.value.trim())}
         // onKeyPress={(e) => {

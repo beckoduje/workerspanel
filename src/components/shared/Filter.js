@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+
+import { ApplicationContext } from "../../context/application-context";
 
 export default function Filter({ sortValue, setSortValue }) {
+  const { workers, setWorkers } = useContext(ApplicationContext);
   const [sortOrder, setSortOrder] = useState("up");
   const [showFilters, setShowFilters] = useState(false);
 
@@ -8,9 +11,26 @@ export default function Filter({ sortValue, setSortValue }) {
     setSortValue(event.target.value);
   }
 
+  // function that sorts by sort value
+  function sortByValue(val, sortOrder) {
+    if (val === "last-name" && sortOrder === "up") {
+      setWorkers(workers.sort((a, b) => (a.lastName > b.lastName ? 1 : -1)));
+    } else if (val === "last-name" && sortOrder === "down") {
+      setWorkers(workers.sort((a, b) => (a.lastName < b.lastName ? 1 : -1)));
+    } else if (val === "name" && sortOrder === "up") {
+      setWorkers(workers.sort((a, b) => (a.name > b.name ? 1 : -1)));
+    } else if (val === "name" && sortOrder === "down") {
+      setWorkers(workers.sort((a, b) => (a.name < b.name ? 1 : -1)));
+    }
+  }
+
   function handleSortOrder() {
     sortOrder === "up" ? setSortOrder("down") : setSortOrder("up");
   }
+
+  useEffect(() => {
+    sortByValue(sortValue, sortOrder);
+  }, [sortValue, sortOrder]);
   return (
     <div className="filter">
       <div className="filter__options-container">
@@ -26,8 +46,6 @@ export default function Filter({ sortValue, setSortValue }) {
           >
             <option value="name">name</option>
             <option value="last-name">last name</option>
-            <option value="salary">salary</option>
-            <option value="work-time">work time</option>
           </select>
         )}
       </div>

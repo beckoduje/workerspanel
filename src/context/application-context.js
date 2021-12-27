@@ -6,6 +6,7 @@ export const ApplicationProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [registeredUsers, setRegisteredUsers] = useState();
   const [workers, setWorkers] = useState([]);
+  const [searchedWorker, setSearchedWorker] = useState("");
 
   // fetching registered users from firebase
   async function fetchRegisteredUsers() {
@@ -50,6 +51,7 @@ export const ApplicationProvider = ({ children }) => {
         email: data[key].email,
         grossSalary: data[key].grossSalary,
         cnp: data[key].cnp,
+        worksFrom: data[key].worksFrom,
       });
     }
     setWorkers(workersTemp);
@@ -95,6 +97,9 @@ export const ApplicationProvider = ({ children }) => {
         setIsLogged,
         registeredUsers,
         workers,
+        setWorkers,
+        searchedWorker,
+        setSearchedWorker,
       }}
     >
       {children}

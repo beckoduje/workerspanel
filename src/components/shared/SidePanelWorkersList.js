@@ -5,8 +5,8 @@ import Paginations from "./Paginations";
 
 import { ApplicationContext } from "../../context/application-context";
 
-export default function SidePanelWorkersList({ searchedWorker }) {
-  const { workers } = useContext(ApplicationContext);
+export default function SidePanelWorkersList({ sortValue }) {
+  const { workers, searchedWorker } = useContext(ApplicationContext);
   const [sliceIndex, setSliceIndex] = useState(0);
   return (
     <div className="side-panel__workers">
@@ -29,7 +29,11 @@ export default function SidePanelWorkersList({ searchedWorker }) {
                   data-worker-id={worker.id}
                 >
                   <Link to="#" className="side-panel__workers-worker-link">
-                    {`${worker.name} ${worker.lastName}`}
+                    <span className="side-panel__workers-worker-name">
+                      {sortValue === "name"
+                        ? `${worker.name} ${worker.lastName}`
+                        : `${worker.lastName} ${worker.name}`}
+                    </span>
                   </Link>
                 </li>
               );
