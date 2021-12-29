@@ -1,25 +1,44 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { ApplicationContext } from "../context/application-context";
 
 export default function SearchedWorkers() {
-  const { navSearchedWorkers } = useContext(ApplicationContext);
+  const [sliceIndex, setSliceIndex] = useState(0);
+  const { workers } = useContext(ApplicationContext);
+  let { worker } = useParams();
+  console.log(worker);
+  console.log("kita");
   return (
     <section className="searched-workers-section">
       <ul className="searched-workers-section__list">
-        {navSearchedWorkers.map((worker) => {
-          return (
-            <li
-              className="searched-workers-section__worker"
-              key={worker.id}
-              data-worker-id={worker.id}
-            >
-              <Link to="#" className="searched-workers-section__worker-link">
-                <span className="searched-workers-section__worker-name"></span>
-              </Link>
-            </li>
-          );
-        })}
+        ahoj
+        {/* {workers &&
+          workers
+            .filter((wrk) => {
+              if (
+                wrk.name.includes(worker.toLowerCase()) ||
+                wrk.lastName.includes(worker.toLowerCase())
+              ) {
+                return wrk;
+              }
+            })
+            .slice(sliceIndex * 10, sliceIndex * 10 + 10)
+            .map((worker) => {
+              return (
+                <li
+                  className="searched-workers-section__worker"
+                  key={worker.id}
+                  data-worker-id={worker.id}
+                >
+                  <Link
+                    to="#"
+                    className="searched-workers-section__worker-link"
+                  >
+                    <span className="searched-workers-section__worker-name"></span>
+                  </Link>
+                </li>
+              );
+            })} */}
       </ul>
     </section>
   );

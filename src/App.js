@@ -21,7 +21,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/log-in" element={<LogIn />} />
-          <Route path="/searched-workers" element={<SearchedWorkers />} />
+          <Route
+            path="/searched-workers/:worker"
+            element={<SearchedWorkers />}
+          />
         </Routes>
       </div>
     </ApplicationProvider>

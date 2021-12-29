@@ -16,7 +16,10 @@ export default function SidePanelWorkersList({ sortValue }) {
             .filter((wrk) => {
               if (searchedWorker === "") {
                 return wrk;
-              } else if (wrk.name.includes(searchedWorker.toLowerCase())) {
+              } else if (
+                wrk.name.includes(searchedWorker.toLowerCase()) ||
+                wrk.lastName.includes(searchedWorker.toLowerCase())
+              ) {
                 return wrk;
               }
             })

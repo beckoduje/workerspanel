@@ -8,6 +8,8 @@ export const ApplicationProvider = ({ children }) => {
   const [workers, setWorkers] = useState([]);
   const [searchedWorker, setSearchedWorker] = useState("");
 
+  const IS_LOGGED_KEY = "isLogged";
+
   // fetching registered users from firebase
   async function fetchRegisteredUsers() {
     const response = await fetch(
@@ -26,9 +28,10 @@ export const ApplicationProvider = ({ children }) => {
     setRegisteredUsers(regUsersTemp);
   }
 
+  // kad se korisnik registrira minja se i isLogged stanje te se trebaju radnici fetchat
   useEffect(() => {
     fetchRegisteredUsers();
-  }, [registeredUsers]);
+  }, [isLogged]);
 
   // fetching workers from firebase
   async function fetchWorkers() {
@@ -86,9 +89,20 @@ export const ApplicationProvider = ({ children }) => {
   //   });
   // }, []);
 
+  // fetching workers from firebase
   useEffect(() => {
     fetchWorkers();
   }, []);
+
+  // log in state saved in LS so the user stay logged in after reload and leaving the page
+  useEffect(() => {
+    const isLoggedJSON = localStorage.getItem(IS_LOGGED_KEY);
+    if (isLoggedJSON != null) setIsLogged(JSON.parse(isLoggedJSON));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(IS_LOGGED_KEY, JSON.stringify(isLogged));
+  }, [isLogged]);
 
   return (
     <ApplicationContext.Provider

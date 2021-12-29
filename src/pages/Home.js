@@ -6,7 +6,7 @@ import { Fragment } from "react/cjs/react.production.min";
 import SidePanel from "../components/shared/SidePanel";
 
 export default function Home() {
-  const { isLogged } = useContext(ApplicationContext);
+  const { isLogged, registeredUsers } = useContext(ApplicationContext);
   const headerClass = !isLogged ? "main-header" : "main-header inactive";
   const sidePanelActivatorClass = isLogged
     ? "side-panel-activator"
@@ -14,6 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     console.log(isLogged);
+    console.log(registeredUsers);
   }, []);
   return (
     <Fragment>
