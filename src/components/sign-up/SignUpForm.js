@@ -2,10 +2,15 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+
+import { isLoggedInActions } from "../../store/isLoggedIn-slice";
+
 import { ApplicationContext } from "../../context/application-context";
 
 export default function SignUpForm({ setExistingUserModal }) {
-  const { setIsLogged, registeredUsers } = useContext(ApplicationContext);
+  const dispatch = useDispatch();
+  const { registeredUsers } = useContext(ApplicationContext);
   // Object that holds all the inputs from user
   const [userInputs, setUserInputs] = useState({
     name: "",
@@ -87,7 +92,7 @@ export default function SignUpForm({ setExistingUserModal }) {
       password: userInputs.password,
     };
     addUserToDatabase(newUser);
-    setIsLogged(true);
+    dispatch(isLoggedInActions.logUserIn());
     navigate("/home", { replace: true });
   }
 

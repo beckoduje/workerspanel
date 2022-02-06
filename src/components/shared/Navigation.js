@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { ApplicationContext } from "../../context/application-context";
+import { isLoggedInActions } from "../../store/isLoggedIn-slice";
+
 import Search from "./Search";
 
 export default function Navigation() {
-  const { isLogged, setIsLogged } = useContext(ApplicationContext);
+  const dispatch = useDispatch();
 
-  const loggedOutClass = !isLogged
+  const isLoggedIn = useSelector((state) => state.isLoggedIn.isLoggedIn);
+
+  const loggedOutClass = !isLoggedIn
     ? "main-navigation__link-item"
     : "main-navigation__link-item inactive";
-  const loggedInClass = isLogged
+  const loggedInClass = isLoggedIn
     ? "main-navigation__link-item"
     : "main-navigation__link-item inactive";
 
@@ -64,15 +68,15 @@ export default function Navigation() {
         <li
           className="main-navigation__link-item"
           onClick={() => {
-            if (!isLogged) return;
-            setIsLogged(false);
+            if (!isLoggedIn) return;
+            dispatch(isLoggedInActions.logUserOut());
           }}
         >
           <NavLink
             className={(navData) => (navData.isActive ? "active" : "")}
             to="/log-in"
           >
-            {!isLogged ? "Log in" : "Log out"}
+            {!isLoggedIn ? "Log in" : "Log out"}
           </NavLink>
         </li>
       </ul>

@@ -1,9 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { isLoggedInActions } from "../../store/isLoggedIn-slice";
 import { ApplicationContext } from "../../context/application-context";
 
 export default function LogInForm() {
-  const { setIsLogged, registeredUsers } = useContext(ApplicationContext);
+  const dispatch = useDispatch();
+
+  const { registeredUsers } = useContext(ApplicationContext);
   const [userInputs, setUserInputs] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: false, password: false });
 
@@ -99,7 +103,8 @@ export default function LogInForm() {
     // inputFieldChecker(registeredUsers, userInputs, "password");
     console.log(isUserFound);
     if (isUserFound) {
-      setIsLogged(true);
+      // setIsLogged(true);
+      dispatch(isLoggedInActions.logUserIn());
       navigate("/home", { replace: true });
     }
   }
