@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { ApplicationProvider } from "./context/application-context";
 
 import "./css/style.css";
@@ -9,6 +10,21 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import SearchedWorkers from "./pages/SearchedWorkers";
+
+// const dispatch = useDispatch();
+// const isLoggedIn = useSelector((state) => state.isLoggedIn.isLoggedIn);
+
+// čuvanje login stanja u LS da korisnik ostane ulogiran
+const IS_LOGGED_KEY = "isLogged";
+
+useEffect(() => {
+  const isLoggedJSON = localStorage.getItem(IS_LOGGED_KEY);
+  if (isLoggedJSON != null) setIsLogged(JSON.parse(isLoggedJSON));
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(IS_LOGGED_KEY, JSON.stringify(isLogged));
+}, [isLogged]);
 
 function App() {
   return (
