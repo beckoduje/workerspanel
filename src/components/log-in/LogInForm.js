@@ -1,11 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isLoggedInActions } from "../../store/isLoggedIn-slice";
 import { ApplicationContext } from "../../context/application-context";
 
 export default function LogInForm() {
   const dispatch = useDispatch();
+  // const registeredUsers = useSelector(
+  //   (state) => state.registeredUsers.registeredUsers
+  // );
 
   const { registeredUsers } = useContext(ApplicationContext);
   const [userInputs, setUserInputs] = useState({ email: "", password: "" });
@@ -111,6 +114,7 @@ export default function LogInForm() {
 
   useEffect(() => {
     console.log(errors);
+    console.log(registeredUsers);
   }, [errors]);
 
   // email group

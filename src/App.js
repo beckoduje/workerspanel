@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoggedInActions } from "./store/isLoggedIn-slice";
 import { ApplicationProvider } from "./context/application-context";
 
+import { fetchRegisteredUsers } from "./store/fetch-actions";
+
 import "./css/style.css";
 
 import Navigation from "./components/shared/Navigation";
@@ -30,6 +32,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem(IS_LOGGED_KEY, JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
+
+  // fetchanje registriranih korisnika
+  useEffect(() => {
+    dispatch(fetchRegisteredUsers());
+  }, [dispatch]);
 
   return (
     <ApplicationProvider>
