@@ -3,7 +3,6 @@ import React, { createContext, useState, useEffect } from "react";
 export const ApplicationContext = createContext();
 
 export const ApplicationProvider = ({ children }) => {
-  const [isLogged, setIsLogged] = useState(false);
   const [registeredUsers, setRegisteredUsers] = useState();
   const [workers, setWorkers] = useState([]);
   const [searchedWorker, setSearchedWorker] = useState("");
@@ -31,7 +30,7 @@ export const ApplicationProvider = ({ children }) => {
   // kad se korisnik registrira minja se i isLogged stanje te se trebaju radnici fetchat
   useEffect(() => {
     fetchRegisteredUsers();
-  }, [isLogged]);
+  }, []);
 
   // fetching workers from firebase
   async function fetchWorkers() {
@@ -94,21 +93,9 @@ export const ApplicationProvider = ({ children }) => {
     fetchWorkers();
   }, []);
 
-  // log in state saved in LS so the user stay logged in after reload and leaving the page
-  useEffect(() => {
-    const isLoggedJSON = localStorage.getItem(IS_LOGGED_KEY);
-    if (isLoggedJSON != null) setIsLogged(JSON.parse(isLoggedJSON));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(IS_LOGGED_KEY, JSON.stringify(isLogged));
-  }, [isLogged]);
-
   return (
     <ApplicationContext.Provider
       value={{
-        isLogged,
-        setIsLogged,
         registeredUsers,
         workers,
         setWorkers,
