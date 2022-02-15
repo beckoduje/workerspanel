@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
-
-import { ApplicationContext } from "../../context/application-context";
+import { useSelector } from "react-redux";
 
 export default function Paginations({ setSliceIndex }) {
-  const { workers } = useContext(ApplicationContext);
+  const workers = useSelector((state) => state.workers.workers);
   const [activePage, getActivePage] = useState(1);
 
   const handlePageChange = (pageNumber) => {

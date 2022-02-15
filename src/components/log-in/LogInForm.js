@@ -1,16 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedInActions } from "../../store/isLoggedIn-slice";
-import { ApplicationContext } from "../../context/application-context";
+import { fetchWorkers } from "../../store/fetch-actions";
 
 export default function LogInForm() {
   const dispatch = useDispatch();
-  // const registeredUsers = useSelector(
-  //   (state) => state.registeredUsers.registeredUsers
-  // );
+  const registeredUsers = useSelector(
+    (state) => state.registeredUsers.registeredUsers
+  );
 
-  const { registeredUsers } = useContext(ApplicationContext);
   const [userInputs, setUserInputs] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: false, password: false });
 
@@ -25,26 +24,6 @@ export default function LogInForm() {
       };
     });
   }
-
-  // function emailChecker(registeredUsers, userInputs) {
-  //   if (registeredUsers.some((user) => user.email === userInputs.email)) {
-  //     setErrors((prevErrors) => {
-  //       return {
-  //         ...prevErrors,
-  //         email: false,
-  //       };
-  //     });
-  //     return true;
-  //   } else {
-  //     setErrors((prevErrors) => {
-  //       return {
-  //         ...prevErrors,
-  //         email: true,
-  //       };
-  //     });
-  //     return false;
-  //   }
-  // }
 
   function isRegisteredCheck(registeredUsers, userInputs) {
     let isCredentialsOk;
@@ -74,48 +53,17 @@ export default function LogInForm() {
     return isCredentialsOk;
   }
 
-  // function inputFieldChecker(registeredUsers, userInputs, inputField) {
-  //   if (
-  //     registeredUsers.some((user) => user.inputField === userInputs.inputField)
-  //   ) {
-  //     setErrors((prevErrors) => {
-  //       return {
-  //         ...prevErrors,
-  //         [inputField]: false,
-  //       };
-  //     });
-  //     console.log("IMmmmmaaaa");
-  //     console.log(inputField);
-  //   } else {
-  //     setErrors((prevErrors) => {
-  //       return {
-  //         ...prevErrors,
-  //         [inputField]: true,
-  //       };
-  //     });
-  //   }
-  // }
-
-  // function checkPassword
-
   // Function that checks credentials
   function loggInUser(e, registeredUsers, userInputs) {
     e.preventDefault();
     const isUserFound = isRegisteredCheck(registeredUsers, userInputs);
-    // inputFieldChecker(registeredUsers, userInputs, "email");
-    // inputFieldChecker(registeredUsers, userInputs, "password");
-    console.log(isUserFound);
+
     if (isUserFound) {
-      // setIsLogged(true);
       dispatch(isLoggedInActions.logUserIn());
       navigate("/home", { replace: true });
+      dispatch(fetchWorkers());
     }
   }
-
-  useEffect(() => {
-    console.log(errors);
-    console.log(registeredUsers);
-  }, [errors]);
 
   // email group
   const emailInputClass = errors.email ? "error" : "";

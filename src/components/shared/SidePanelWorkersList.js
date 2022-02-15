@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Paginations from "./Paginations";
@@ -6,7 +7,8 @@ import Paginations from "./Paginations";
 import { ApplicationContext } from "../../context/application-context";
 
 export default function SidePanelWorkersList({ sortValue }) {
-  const { workers, searchedWorker } = useContext(ApplicationContext);
+  const { searchedWorker } = useContext(ApplicationContext);
+  const workers = useSelector((state) => state.workers.workers);
   const [sliceIndex, setSliceIndex] = useState(0);
   return (
     <div className="side-panel__workers">

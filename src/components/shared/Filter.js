@@ -1,9 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ApplicationContext } from "../../context/application-context";
 
 export default function Filter({ sortValue, setSortValue }) {
-  const { workers, setWorkers } = useContext(ApplicationContext);
+  const dispatch = useDispatch();
+  const workers = useSelector((state) => state.workers.workers);
+  const { setWorkers } = useContext(ApplicationContext);
   const [sortOrder, setSortOrder] = useState("up");
   const [showFilters, setShowFilters] = useState(false);
 

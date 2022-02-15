@@ -3,61 +3,61 @@ import React, { createContext, useState, useEffect } from "react";
 export const ApplicationContext = createContext();
 
 export const ApplicationProvider = ({ children }) => {
-  const [registeredUsers, setRegisteredUsers] = useState();
+  // const [registeredUsers, setRegisteredUsers] = useState();
   const [workers, setWorkers] = useState([]);
   const [searchedWorker, setSearchedWorker] = useState("");
 
-  const IS_LOGGED_KEY = "isLogged";
+  // const IS_LOGGED_KEY = "isLogged";
 
-  // fetching registered users from firebase
-  async function fetchRegisteredUsers() {
-    const response = await fetch(
-      "https://workers-panel-67e59-default-rtdb.europe-west1.firebasedatabase.app/users.json"
-    );
-    const data = await response.json();
+  // // fetching registered users from firebase
+  // async function fetchRegisteredUsers() {
+  //   const response = await fetch(
+  //     "https://workers-panel-67e59-default-rtdb.europe-west1.firebasedatabase.app/users.json"
+  //   );
+  //   const data = await response.json();
 
-    const regUsersTemp = [];
+  //   const regUsersTemp = [];
 
-    for (const key in data) {
-      regUsersTemp.push({
-        email: data[key].email,
-        password: data[key].password,
-      });
-    }
-    setRegisteredUsers(regUsersTemp);
-  }
+  //   for (const key in data) {
+  //     regUsersTemp.push({
+  //       email: data[key].email,
+  //       password: data[key].password,
+  //     });
+  //   }
+  //   setRegisteredUsers(regUsersTemp);
+  // }
 
   // kad se korisnik registrira minja se i isLogged stanje te se trebaju radnici fetchat
-  useEffect(() => {
-    fetchRegisteredUsers();
-  }, []);
+  // useEffect(() => {
+  //   fetchRegisteredUsers();
+  // }, []);
 
-  // fetching workers from firebase
-  async function fetchWorkers() {
-    const response = await fetch(
-      "https://workers-panel-67e59-default-rtdb.europe-west1.firebasedatabase.app/workers.json"
-    );
-    const data = await response.json();
+  // // fetching workers from firebase
+  // async function fetchWorkers() {
+  //   const response = await fetch(
+  //     "https://workers-panel-67e59-default-rtdb.europe-west1.firebasedatabase.app/workers.json"
+  //   );
+  //   const data = await response.json();
 
-    console.log(data);
+  //   console.log(data);
 
-    const workersTemp = [];
+  //   const workersTemp = [];
 
-    for (const key in data) {
-      workersTemp.push({
-        id: key,
-        name: data[key].name,
-        lastName: data[key].lastName,
-        position: data[key].position,
-        phoneNumber: data[key].phoneNumber,
-        email: data[key].email,
-        grossSalary: data[key].grossSalary,
-        cnp: data[key].cnp,
-        worksFrom: data[key].worksFrom,
-      });
-    }
-    setWorkers(workersTemp);
-  }
+  //   for (const key in data) {
+  //     workersTemp.push({
+  //       id: key,
+  //       name: data[key].name,
+  //       lastName: data[key].lastName,
+  //       position: data[key].position,
+  //       phoneNumber: data[key].phoneNumber,
+  //       email: data[key].email,
+  //       grossSalary: data[key].grossSalary,
+  //       cnp: data[key].cnp,
+  //       worksFrom: data[key].worksFrom,
+  //     });
+  //   }
+  //   setWorkers(workersTemp);
+  // }
 
   // function to POST registered user to FIREBASE
   // trenutno služi za manualno dodavanje radnika
@@ -89,14 +89,14 @@ export const ApplicationProvider = ({ children }) => {
   // }, []);
 
   // fetching workers from firebase
-  useEffect(() => {
-    fetchWorkers();
-  }, []);
+  // useEffect(() => {
+  //   fetchWorkers();
+  // }, []);
 
   return (
     <ApplicationContext.Provider
       value={{
-        registeredUsers,
+        //registeredUsers,
         workers,
         setWorkers,
         searchedWorker,
