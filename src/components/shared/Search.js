@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ApplicationContext } from "../../context/application-context";
+import { useDispatch, useSelector } from "react-redux";
+import { workersActions } from "../../store/workers-slice";
 
 export default function Search() {
-  const { searchedWorker, setSearchedWorker } = useContext(ApplicationContext);
+  //const { searchedWorker, setSearchedWorker } = useContext(ApplicationContext);
+  const dispatch = useDispatch();
+  const searchedWorker = useSelector((state) => state.workers.searchedWorker);
   const navigate = useNavigate();
 
   return (
@@ -16,7 +20,8 @@ export default function Search() {
           // if (setSearchedWorker !== undefined) {
           //   setSearchedWorker(e.target.value);
           // }
-          setSearchedWorker(e.target.value);
+          // setSearchedWorker(e.target.value);
+          dispatch(workersActions.setSearchedWorker(e.target.value));
         }}
         // onChange={(e) => getUserInput(e.target.value.trim())}
         onKeyPress={(e) => {

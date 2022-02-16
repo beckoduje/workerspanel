@@ -7,9 +7,11 @@ import Paginations from "./Paginations";
 import { ApplicationContext } from "../../context/application-context";
 
 export default function SidePanelWorkersList({ sortValue }) {
-  const { searchedWorker } = useContext(ApplicationContext);
+  // const { searchedWorker } = useContext(ApplicationContext);
+  const searchedWorker = useSelector((state) => state.workers.searchedWorker);
   const workers = useSelector((state) => state.workers.workers);
   const [sliceIndex, setSliceIndex] = useState(0);
+  console.log(searchedWorker);
   return (
     <div className="side-panel__workers">
       <ul className="side-panel__workers-list">

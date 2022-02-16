@@ -1,12 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { ApplicationContext } from "../../context/application-context";
+import { workersActions } from "../../store/workers-slice";
 
 export default function Filter({ sortValue, setSortValue }) {
   const dispatch = useDispatch();
   const workers = useSelector((state) => state.workers.workers);
-  const { setWorkers } = useContext(ApplicationContext);
+
   const [sortOrder, setSortOrder] = useState("up");
   const [showFilters, setShowFilters] = useState(false);
 
@@ -17,13 +16,13 @@ export default function Filter({ sortValue, setSortValue }) {
   // function that sorts by sort value
   function sortByValue(val, sortOrder) {
     if (val === "last-name" && sortOrder === "up") {
-      setWorkers(workers.sort((a, b) => (a.lastName > b.lastName ? 1 : -1)));
+      dispatch(workersActions.sortWorkersByLastNameASC());
     } else if (val === "last-name" && sortOrder === "down") {
-      setWorkers(workers.sort((a, b) => (a.lastName < b.lastName ? 1 : -1)));
+      dispatch(workersActions.sortWorkersByLastNameDSC());
     } else if (val === "name" && sortOrder === "up") {
-      setWorkers(workers.sort((a, b) => (a.name > b.name ? 1 : -1)));
+      dispatch(workersActions.sortWorkersByNameASC());
     } else if (val === "name" && sortOrder === "down") {
-      setWorkers(workers.sort((a, b) => (a.name < b.name ? 1 : -1)));
+      dispatch(workersActions.sortWorkersByNameDSC());
     }
   }
 
@@ -33,7 +32,7 @@ export default function Filter({ sortValue, setSortValue }) {
 
   useEffect(() => {
     sortByValue(sortValue, sortOrder);
-  }, [sortValue, sortOrder]);
+  }, [sortValue, sortOrder, workers]);
   return (
     <div className="filter">
       <div className="filter__options-container">

@@ -5,6 +5,7 @@ import { isLoggedInActions } from "./store/isLoggedIn-slice";
 import { ApplicationProvider } from "./context/application-context";
 
 import { fetchRegisteredUsers } from "./store/fetch-actions";
+import { fetchWorkers } from "./store/fetch-actions";
 
 import "./css/style.css";
 
@@ -18,6 +19,7 @@ import SearchedWorkers from "./pages/SearchedWorkers";
 function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedIn.isLoggedIn);
+  const workers = useSelector((state) => state.workers.workers);
 
   // čuvanje login stanja u LS da korisnik ostane ulogiran
   const IS_LOGGED_KEY = "isLogged";
@@ -36,6 +38,14 @@ function App() {
   // fetchanje registriranih korisnika
   useEffect(() => {
     dispatch(fetchRegisteredUsers());
+  }, [dispatch]);
+
+  // fetchanje radnika na pokretanje stranice ako nisu fetchani već prije
+  useEffect(() => {
+    if (workers.lenght > 0) {
+      return;
+    }
+    dispatch(fetchWorkers());
   }, [dispatch]);
 
   return (
