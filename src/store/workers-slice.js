@@ -20,7 +20,7 @@ const workersSlice = createSlice({
       state.workers.sort((a, b) => (a.name < b.name ? 1 : -1));
     },
     setSearchedWorker(state, action) {
-      state.searchedWorker = action.payload.value;
+      state.searchedWorker = action.payload;
     },
   },
 });
