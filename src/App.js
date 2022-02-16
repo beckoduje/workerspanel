@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedInActions } from "./store/isLoggedIn-slice";
-import { ApplicationProvider } from "./context/application-context";
-
 import { fetchRegisteredUsers } from "./store/fetch-actions";
 import { fetchWorkers } from "./store/fetch-actions";
 
@@ -29,7 +27,7 @@ function App() {
     if (isLoggedJSON != null && JSON.parse(isLoggedJSON) === true) {
       dispatch(isLoggedInActions.logUserIn());
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     localStorage.setItem(IS_LOGGED_KEY, JSON.stringify(isLoggedIn));
@@ -46,25 +44,20 @@ function App() {
       return;
     }
     dispatch(fetchWorkers());
-  }, [dispatch]);
+  }, [dispatch, workers.lenght]);
 
   return (
-    <ApplicationProvider>
-      <div className="global-wrapper">
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/log-in" element={<LogIn />} />
-          <Route
-            path="/searched-workers/:worker"
-            element={<SearchedWorkers />}
-          />
-        </Routes>
-      </div>
-    </ApplicationProvider>
+    <div className="global-wrapper">
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Navigate replace to="/home" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/log-in" element={<LogIn />} />
+        <Route path="/searched-workers/:worker" element={<SearchedWorkers />} />
+      </Routes>
+    </div>
   );
 }
 

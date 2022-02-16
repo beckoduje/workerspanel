@@ -58,7 +58,10 @@ export default function Navigation() {
         <li className={loggedInClass}>
           <button className="main-navigation__profile-icon-button">
             <figure className="main-navigation__profile-icon-figure">
-              <img className="main-navigation__profile-icon-image" />
+              <img
+                alt="profile"
+                className="main-navigation__profile-icon-image"
+              />
             </figure>
           </button>
         </li>

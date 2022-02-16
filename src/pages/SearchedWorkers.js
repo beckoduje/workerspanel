@@ -1,13 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ApplicationContext } from "../context/application-context";
 
 export default function SearchedWorkers() {
   const [sliceIndex, setSliceIndex] = useState(0);
-  const { workers } = useContext(ApplicationContext);
   let { worker } = useParams();
   console.log(worker);
-  console.log("kita");
   return (
     <section className="searched-workers-section">
       <ul className="searched-workers-section__list">

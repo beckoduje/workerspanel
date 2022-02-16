@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -48,7 +48,6 @@ export default function SignUpForm({ setExistingUserModal }) {
         },
       }
     );
-    const data = await response.json();
   }
 
   // function that updates states with user inputs for every input. Triggered with onCHange
@@ -112,7 +111,6 @@ export default function SignUpForm({ setExistingUserModal }) {
 
   useEffect(() => {
     registerUserHandler(registeredUsers, userInputs, errors);
-    // addUserToDatabase(registeredUsers);
     dispatch(fetchWorkers());
     console.log(registeredUsers);
   }, [errors]);
