@@ -44,7 +44,7 @@ export default function Navigation() {
         {/* linkovi LOGGED IN */}
 
         <li className={loggedInClass}>
-          <Search />
+          <Search searchBarType={"topNav"} />
         </li>
 
         <li className={loggedInClass}>

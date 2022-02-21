@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const workersSlice = createSlice({
   name: "workers",
-  initialState: { workers: [], searchedWorker: "" },
+  initialState: {
+    workers: [],
+    searchedSideWorker: "",
+    searchedTopNavWorker: "",
+  },
   reducers: {
     setWorkers(state, action) {
       state.workers = action.payload.workers;
@@ -20,7 +24,11 @@ const workersSlice = createSlice({
       state.workers.sort((a, b) => (a.name < b.name ? 1 : -1));
     },
     setSearchedWorker(state, action) {
-      state.searchedWorker = action.payload;
+      if (action.payload.type === "sideNav") {
+        state.searchedSideWorker = action.payload.worker;
+      } else if (action.payload.type === "topNav") {
+        state.searchedTopNavWorker = action.payload.worker;
+      }
     },
   },
 });

@@ -2,10 +2,25 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { workersActions } from "../../store/workers-slice";
 
-export default function Search() {
+export default function Search({ searchBarType }) {
   const dispatch = useDispatch();
-  const searchedWorker = useSelector((state) => state.workers.searchedWorker);
+  const searchedSideWorker = useSelector(
+    (state) => state.workers.searchedSideWorker
+  );
+  const searchedTopNavWorker = useSelector(
+    (state) => state.workers.searchedTopNavWorker
+  );
   const navigate = useNavigate();
+
+  const handleSearchedWorkers = (e, barType) => {
+    dispatch(
+      workersActions.setSearchedWorker({
+        type: barType,
+        worker: e.target.value,
+      })
+    );
+    console.log(searchedTopNavWorker);
+  };
 
   return (
     <form action="#" method="post" className="worker-search-form">
@@ -14,12 +29,14 @@ export default function Search() {
         type="text"
         className="worker-search-form__input"
         onChange={(e) => {
-          dispatch(workersActions.setSearchedWorker(e.target.value));
+          handleSearchedWorkers(e, searchBarType);
         }}
         onKeyPress={(e) => {
           if (e.key === "Enter" && e.target.value.trim() !== "") {
             e.preventDefault();
-            navigate("/searched-workers/" + searchedWorker, { replace: false });
+            navigate("/searched-workers/" + searchedSideWorker, {
+              replace: false,
+            });
             e.target.value = "";
           } else if (e.key === "Enter") {
             e.preventDefault();

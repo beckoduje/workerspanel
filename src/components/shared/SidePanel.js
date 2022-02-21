@@ -17,7 +17,7 @@ export default function SidePanel() {
         {isSidePanelOpen && (
           <Filter sortValue={sortValue} setSortValue={setSortValue} />
         )}
-        {isSidePanelOpen && <Search />}
+        {isSidePanelOpen && <Search searchBarType={"sideNav"} />}
         <button
           className="side-panel__toggle-button"
           onClick={() => setIsSidePanelOpen(!isSidePanelOpen)}

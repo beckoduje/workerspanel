@@ -5,21 +5,23 @@ import { Link } from "react-router-dom";
 import Paginations from "./Paginations";
 
 export default function SidePanelWorkersList({ sortValue }) {
-  const searchedWorker = useSelector((state) => state.workers.searchedWorker);
+  const searchedSideWorker = useSelector(
+    (state) => state.workers.searchedSideWorker
+  );
   const workers = useSelector((state) => state.workers.workers);
   const [sliceIndex, setSliceIndex] = useState(0);
-  console.log(searchedWorker);
+  console.log(searchedSideWorker);
   return (
     <div className="side-panel__workers">
       <ul className="side-panel__workers-list">
         {workers &&
           workers
             .filter((wrk) => {
-              if (searchedWorker === "") {
+              if (searchedSideWorker === "") {
                 return wrk;
               } else if (
-                wrk.name.includes(searchedWorker.toLowerCase()) ||
-                wrk.lastName.includes(searchedWorker.toLowerCase())
+                wrk.name.includes(searchedSideWorker.toLowerCase()) ||
+                wrk.lastName.includes(searchedSideWorker.toLowerCase())
               ) {
                 return wrk;
               }
