@@ -1,3 +1,6 @@
 .searched-workers-section {
   @extend .sign-up-section;
+  .searched-workers-section__list {
+    @extend .side-panel__workers-list;
+  }
 }

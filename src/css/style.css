@@ -562,11 +562,11 @@
           justify-content: space-between;
 }
 
-.side-panel__workers-list {
+.side-panel__workers-list, .searched-workers-section .searched-workers-section__list {
   list-style: none;
 }
 
-.side-panel__workers-list li a {
+.side-panel__workers-list li a, .searched-workers-section .searched-workers-section__list li a {
   display: block;
   margin-bottom: 1rem;
   text-decoration: none;
@@ -576,8 +576,9 @@
           box-shadow: 0px 1px 2px rgba(32, 33, 36, 0.28);
 }
 
-.side-panel__workers-list li a span:nth-child(2),
-.side-panel__workers-list li a span:nth-child(3) {
+.side-panel__workers-list li a span:nth-child(2), .searched-workers-section .searched-workers-section__list li a span:nth-child(2),
+.side-panel__workers-list li a span:nth-child(3),
+.searched-workers-section .searched-workers-section__list li a span:nth-child(3) {
   font-size: 1rem;
 }
 

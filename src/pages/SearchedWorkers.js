@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Paginations from "../components/shared/Paginations";
 
 export default function SearchedWorkers() {
   const [sliceIndex, setSliceIndex] = useState(0);
+  const workers = useSelector((state) => state.workers.workers);
   let { worker } = useParams();
-  console.log(worker);
   return (
     <section className="searched-workers-section">
       <ul className="searched-workers-section__list">
-        ahoj
-        {/* {workers &&
+        {workers &&
           workers
             .filter((wrk) => {
               if (
@@ -31,12 +32,17 @@ export default function SearchedWorkers() {
                     to="#"
                     className="searched-workers-section__worker-link"
                   >
-                    <span className="searched-workers-section__worker-name"></span>
+                    <span className="searched-workers-section__worker-name">
+                      {worker.lastName}&nbsp;{worker.name}
+                    </span>
                   </Link>
                 </li>
               );
-            })} */}
+            })}
       </ul>
+      {/* <div className="side-panel__workers-pagination">
+        <Paginations setSliceIndex={setSliceIndex} />
+      </div> */}
     </section>
   );
 }
