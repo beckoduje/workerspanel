@@ -10,44 +10,49 @@ export default function SidePanelWorkersList({ sortValue }) {
   );
   const workers = useSelector((state) => state.workers.workers);
   const [sliceIndex, setSliceIndex] = useState(0);
-  console.log(searchedSideWorker);
+
+  const filteredSearchedWorkers = workers.filter((worker) => {
+    if (searchedSideWorker === "") {
+      return worker;
+    } else if (
+      worker.name.includes(searchedSideWorker.toLowerCase()) ||
+      worker.lastName.includes(searchedSideWorker.toLowerCase())
+    ) {
+      return worker;
+    }
+  });
+
   return (
     <div className="side-panel__workers">
       <ul className="side-panel__workers-list">
-        {workers &&
-          workers
-            .filter((wrk) => {
-              if (searchedSideWorker === "") {
-                return wrk;
-              } else if (
-                wrk.name.includes(searchedSideWorker.toLowerCase()) ||
-                wrk.lastName.includes(searchedSideWorker.toLowerCase())
-              ) {
-                return wrk;
-              }
-            })
-            .slice(sliceIndex * 10, sliceIndex * 10 + 10)
-            .map((worker) => {
-              return (
-                <li
-                  className="side-panel__workers-worker"
-                  key={worker.id}
-                  data-worker-id={worker.id}
+        {filteredSearchedWorkers
+          .slice(sliceIndex * 10, sliceIndex * 10 + 10)
+          .map((worker) => {
+            return (
+              <li
+                className="side-panel__workers-worker"
+                key={worker.id}
+                data-worker-id={worker.id}
+              >
+                <Link
+                  to={"/single-worker/" + worker.id}
+                  className="side-panel__workers-worker-link"
                 >
-                  <Link to="#" className="side-panel__workers-worker-link">
-                    <span className="side-panel__workers-worker-name">
-                      {sortValue === "name"
-                        ? `${worker.name} ${worker.lastName}`
-                        : `${worker.lastName} ${worker.name}`}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
+                  <span className="side-panel__workers-worker-name">
+                    {sortValue === "name"
+                      ? `${worker.name} ${worker.lastName}`
+                      : `${worker.lastName} ${worker.name}`}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
       </ul>
-      <div className="side-panel__workers-pagination">
-        <Paginations setSliceIndex={setSliceIndex} />
-      </div>
+      {filteredSearchedWorkers.length > 10 && (
+        <div className="side-panel__workers-pagination">
+          <Paginations setSliceIndex={setSliceIndex} />
+        </div>
+      )}
     </div>
   );
 }

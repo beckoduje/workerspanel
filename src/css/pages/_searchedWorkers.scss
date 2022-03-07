@@ -1,5 +1,8 @@
 .searched-workers-section {
   @extend .sign-up-section;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
   .searched-workers-section__list {
     @extend .side-panel__workers-list;
   }

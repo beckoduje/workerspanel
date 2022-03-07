@@ -13,6 +13,7 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import SearchedWorkers from "./pages/SearchedWorkers";
+import SingleWorker from "./pages/SingleWorker";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/log-in" element={<LogIn />} />
         <Route path="/searched-workers/:worker" element={<SearchedWorkers />} />
+        <Route path="/single-worker/:workerId" element={<SingleWorker />} />
       </Routes>
     </div>
   );
