@@ -54,7 +54,7 @@ export default function SingleWorker() {
             <input
               id="name"
               type="text"
-              value={workerDetails.name}
+              value={workerDetails.name ? workerDetails.name : ""}
               onChange={(e) => handleChangeWorkerDetails(e, "name")}
               className="single-worker-form__input"
               disabled={edit}
@@ -65,7 +65,7 @@ export default function SingleWorker() {
             <input
               id="surname"
               type="text"
-              value={workerDetails.lastName}
+              value={workerDetails.lastName ? workerDetails.lastName : ""}
               onChange={(e) => handleChangeWorkerDetails(e, "lastName")}
               className="single-worker-form__input"
               disabled={edit}
@@ -76,7 +76,7 @@ export default function SingleWorker() {
             <input
               id="cnp"
               type="number"
-              value={workerDetails.cnp}
+              value={workerDetails.cnp ? workerDetails.cnp : ""}
               onChange={(e) => handleChangeWorkerDetails(e, "cnp")}
               className="single-worker-form__input"
               disabled={edit}
@@ -87,7 +87,7 @@ export default function SingleWorker() {
             <input
               id="phone"
               type="text"
-              value={workerDetails.phoneNumber}
+              value={workerDetails.phoneNumber ? workerDetails.phoneNumber : ""}
               onChange={(e) => handleChangeWorkerDetails(e, "phoneNumber")}
               className="single-worker-form__input"
               disabled={edit}
@@ -98,7 +98,7 @@ export default function SingleWorker() {
             <input
               id="position"
               type="text"
-              value={workerDetails.position}
+              value={workerDetails.position ? workerDetails.position : ""}
               onChange={(e) => handleChangeWorkerDetails(e, "position")}
               className="single-worker-form__input"
               disabled={edit}
@@ -109,7 +109,7 @@ export default function SingleWorker() {
             <input
               id="salary"
               type="number"
-              value={workerDetails.grossSalary}
+              value={workerDetails.grossSalary ? workerDetails.grossSalary : ""}
               onChange={(e) => handleChangeWorkerDetails(e, "grossSalary")}
               className="single-worker-form__input"
               disabled={edit}
@@ -120,8 +120,8 @@ export default function SingleWorker() {
             <input
               id="worksFrom"
               type="date"
-              value={workerDetails.worksFrom}
-              onChange={(e) => handleChangeWorkerDetails(e, "worksForm")}
+              value={workerDetails.worksFrom ? workerDetails.worksFrom : ""}
+              onChange={(e) => handleChangeWorkerDetails(e, "worksFrom")}
               className="single-worker-form__input"
               disabled={edit}
             />
