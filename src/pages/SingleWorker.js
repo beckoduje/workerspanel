@@ -31,10 +31,15 @@ export default function SingleWorker() {
 
   const handleChangeWorkerDetails = (e, workerData) => {
     setWorkerDetails({ ...workerDetails, [workerData]: e.target.value });
+    console.log(e.target.value);
   };
 
   console.log(workerId);
   console.log(singleWorker);
+
+  useEffect(() => {
+    console.log(workerDetails.worksFrom);
+  }, [workerDetails]);
 
   return (
     <section className="single-worker-section">
